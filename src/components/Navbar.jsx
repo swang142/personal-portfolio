@@ -35,7 +35,7 @@ const [toggle, setToggle] = useState(true);
               <a target="_blank" href="https://www.linkedin.com/in/stanley-wang-aa0876288/"> <img src={linkedin} width= "25"/> </a>
             </li>
             <li className =  "text-secondary text-[18px] font-medium">
-              <a target="_blank" href="https://github.com"> <img src={github} width= "25"/> </a>
+              <a target="_blank" href="https://github.com/swang142"> <img src={github} width= "25"/> </a>
             </li>
           {navLinks.map((nav) => (
             <li
