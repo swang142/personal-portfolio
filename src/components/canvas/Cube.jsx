@@ -1,12 +1,12 @@
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
-import {PCFSoftShadowMap} from 'three';
+import {Mesh, PCFSoftShadowMap} from 'three';
 import { OrbitControls, Preload, useGLTF, useAnimations } from '@react-three/drei';
 import CanvasLoader from '../Loader';
 
-const Model = ({ src, isMobile }) => {
+const Model = ({ src}) => {
   const group = useRef();
-  const { scene, animations } = useGLTF(src);
+  const { scene, animations } = useGLTF(src, true);
   const { ref, actions } = useAnimations(animations, group);
 
   useEffect(() => {
@@ -16,9 +16,8 @@ const Model = ({ src, isMobile }) => {
 
     return () => {
       // Stop the action on cleanup
-      if (actions['Animation']) {
         actions['Animation'].stop();
-      }
+      
     };
   }
   , [actions]); 
@@ -48,8 +47,6 @@ const Cube = ({ src, isMobile }) => {
         penumbra={1}
         intensity={1}
         castShadow
-        shadow-mapSize-width={2048} // Higher resolution for cleaner shadows
-        shadow-mapSize-height={2048}
       />
       <Model src={src} isMobile={isMobile} />
     </group>
